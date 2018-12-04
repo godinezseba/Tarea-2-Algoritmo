@@ -3,12 +3,12 @@
 // Second subarray is arr[m+1..r] 
 #include "Avion.h"
 
-void mergeSort(avion *A, avion *temp, int izq, int der){
+void mergeSortaux(avion *A, avion *temp, int izq, int der){
     int i, i1, i2, curr, med = (izq + der)/2;
     if(izq == der) return;
 
-    mergeSort(A, temp, izq, med);
-    mergeSort(A, temp, med+1, der);
+    mergeSortaux(A, temp, izq, med);
+    mergeSortaux(A, temp, med+1, der);
 
     for(int i = izq; i <= der; i++) temp[i] = A[i];
 
@@ -21,4 +21,10 @@ void mergeSort(avion *A, avion *temp, int izq, int der){
         else if (temp[i1].getX() >= temp[i2].getX() ) A[i] = temp[i1++];
         else A[i] = temp[i2++];
     }
-} 
+}
+
+void mergeSort(avion *A, int n){
+    avion *temp = new avion[n];
+    mergeSortaux(A, temp, 0, n);
+    delete temp;
+}
