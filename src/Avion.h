@@ -11,6 +11,7 @@ class avion{
         avion();
         avion(float x, float y);
         ~avion();
+        void set(float x, float y);
         float getX();
         float getY();
 };
@@ -26,6 +27,12 @@ avion::avion(float x, float y){
 }
 
 avion::~avion(){
+}
+
+void avion::set(float x, float y){
+    this->x = x;
+    this->y = y;
+    return;
 }
 
 float avion::getX(){
