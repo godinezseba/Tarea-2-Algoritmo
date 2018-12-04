@@ -7,12 +7,25 @@
 using namespace std;
 
 main(int argc, char const *argv[]){
-    avion *A = new avion[10];
-    avion *temp = new avion[10];
     
-    int s; 
+    
+    int s;
+    int u;
+    float i;
+    float j; 
+    avion *A;
+    avion *resp;
 	while(cin >> s){
-		cout << s << endl;
+        A = new avion[s];
+
+        for(u = 0; u< s; u++){
+            cin >> i >> j;
+            A[u].set(i,j);
+            
+        }
+        //resp =cercanos(A,s);
+
+        delete[] A; 
 	}
 
     return 0;
