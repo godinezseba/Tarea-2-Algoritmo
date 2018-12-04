@@ -10,12 +10,12 @@ void mergeSort(avion *A, avion *temp, int izq, int der){
     mergeSort(A, temp, izq, med);
     mergeSort(A, temp, med+1, der);
 
-    for(int i = izq; i <= der; i++) temp[i] = A[i];
+    for(int i = izq; i < der; i++) temp[i] = A[i];
 
     i1 = izq; i2 = med + 1;
 
     
-    for(int i = izq; i <= der; i++){
+    for(int i = izq; i < der; i++){
         if(i1 == med + 1) A[i] = temp[i2++];
         else if(i2 > der) A[i] = temp[i1++];
         else if (temp[i1].getX() >= temp[i2].getX() ) A[i] = temp[i1++];

@@ -53,6 +53,7 @@ float compareX(avion A, avion B){
     return A.getX()- B.getX();
 }
 
-float compareX(avion A, avion B){
-    return A.getX()- B.getX();
+float compareY(avion A, avion B){
+    return A.getY()- B.getY();
 }
+
