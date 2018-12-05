@@ -45,7 +45,7 @@ cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
         temp[i] = Arreglo[i];
     }
 
-    mergeSortY(temp, derecho+1-izq);
+    mergeSort(temp, derecho+1-izq, antesQueY);
     
     return respuesta;
 }
@@ -87,8 +87,7 @@ cercanos cercaaux(avion *Arr,int izq, int der){
 }
 
 cercanos cerca(avion *A, int n){
-    mergeSortX(A, n);
+    mergeSort(A, n, antesQueX);
 
-    
-    return cercaaux(A, 0, n);
+    return cercaaux(A, 0, n-1);
 }
