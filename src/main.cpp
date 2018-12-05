@@ -23,6 +23,7 @@ int main(int argc, char const *argv[]){
         }
         resp = cerca(A,s);
         resp.printValues();
+        cout << endl;
         delete[] A; 
 	}
 

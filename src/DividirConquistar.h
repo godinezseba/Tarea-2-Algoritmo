@@ -13,6 +13,7 @@ class cercanos{
         void setValores(avion , avion , float);
         float getDistancia();
         void printValues();
+        void printDebug();
 
 };
 
@@ -29,15 +30,25 @@ cercanos::~cercanos(){
 void cercanos::setValores(avion X, avion Y, float l){
     this->A = X;
     this->B = Y;
-    distancia = l;
+    this->distancia = l;
 }
 
 float cercanos::getDistancia(){
     return this->distancia;
 }
 
+void cercanos::printValues(){
+    cout << A.getX() << " " << A.getY() << "\n" << B.getX() << " " << B.getY() << endl;
+}
+
+void cercanos::printDebug(){
+    A.printValues();
+    B.printValues();
+    cout << this->distancia << endl; 
+}
+
 cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
-    int sol_izquierdo, sol_derecho;
+    int sol_izquierdo = izq, sol_derecho = derecho;
     avion *temp;
 
     for(int i = derecho+1-izq; i >= izq && solucion.getDistancia() < compareX(Arreglo[derecho+1-izq], Arreglo[i]); i--)
@@ -51,11 +62,10 @@ cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
     for(int i = sol_izquierdo, j = 0; i <= sol_derecho; i++, j++){
         temp[j] = Arreglo[i];
     }
-    mergeSort(temp, derecho+1-izq, antesQueY);
+    mergeSort(temp, sol_derecho+1-sol_izquierdo, antesQueY);
 
-    for(int i = 1; i <= derecho+1-izq; i++){
-        int j = i-1;
-        while(compareY(temp[j], temp[i]) < solucion.getDistancia()){
+    for(int i = 0; i <= sol_derecho+1-sol_izquierdo; i++){
+        for(int j = i+1; j < sol_derecho+1-sol_izquierdo && compareY(temp[j], temp[i]) < solucion.getDistancia(); j++){
             if(distancia(temp[i], temp[j]) < solucion.getDistancia()){
                 solucion.setValores(temp[i], temp[j], distancia(temp[i], temp[j]));
             }
@@ -63,27 +73,24 @@ cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
     }
     return solucion;
 }
-void cercanos::printValues(){
-    cout << A.getX() << " " << A.getY() << endl << B.getX() << " " << B.getY() << endl; 
-}
 
 cercanos cercaaux(avion *Arr,int izq, int der){
     int med = (izq + der)/2;
-
+    
     if(der - izq == 1) {
         cercanos sol = cercanos();
         sol.setValores(Arr[izq],Arr[der],distancia(Arr[izq],Arr[der]));
         return sol;
     }
-
+    
     cercanos sol_izq = cercaaux(Arr, izq, med);
-    cercanos sol_der = cercaaux(Arr, med+1, der);
+    cercanos sol_der = cercaaux(Arr, med, der);
 
     if ( sol_izq.getDistancia() > sol_der.getDistancia()){
-        return cantidados(Arr,sol_der,izq,der);
+        return cantidados(Arr, sol_der, izq, der);
     }
     else {
-        return cantidados(Arr,sol_izq,izq,der);
+        return cantidados(Arr, sol_izq, izq, der);
     }
 }
 

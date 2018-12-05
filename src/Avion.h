@@ -14,6 +14,7 @@ class avion{
         void set(float x, float y);
         float getX();
         float getY();
+        void printValues();
 };
 
 avion::avion(){
@@ -43,6 +44,10 @@ float avion::getY(){
     return this->y;
 }
 
+void avion::printValues(){
+    cout << "Coor en X: " << x << ",\nCoor en Y: " << y << endl;
+}
+
 void printArreglo(avion *A, int l){
     for(int i = 0; i < l; i++){
         cout << "Valor de x: " << A[i].getX() << " Valor de y: " << A[i].getY() << endl;
@@ -53,7 +58,7 @@ float distancia(avion a, avion b){
     float A = pow((a.getX() - b.getX()),2);
     float B = pow((a.getY() - b.getY()),2);
     
-    return pow(A+B,(1/2)); 
+    return pow(A + B, 0.5); 
 }
 
 float compareX(avion A, avion B){
