@@ -71,6 +71,8 @@ cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
             }
         }
     }
+
+    delete[] temp;
     return solucion;
 }
 

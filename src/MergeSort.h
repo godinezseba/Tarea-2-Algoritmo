@@ -23,6 +23,6 @@ void mergeSortaux(avion *A, avion *temp, int izq, int der, bool (*func)(avion, a
 void mergeSort(avion *A, int n, bool (*func)(avion, avion)){
     avion *temp = new avion[n];
     mergeSortaux(A, temp, 0, n-1, func);
-    // delete temp;
+    delete[] temp;
 }
 
