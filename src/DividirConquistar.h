@@ -89,6 +89,5 @@ cercanos cercaaux(avion *Arr,int izq, int der){
 
 cercanos cerca(avion *A, int n){
     mergeSort(A, n, antesQueX);
-
     return cercaaux(A, 0, n-1);
 }
