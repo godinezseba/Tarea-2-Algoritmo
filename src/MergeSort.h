@@ -1,7 +1,7 @@
 #include "Avion.h"
 
 void mergeSortaux(avion *A, avion *temp, int izq, int der, bool (*func)(avion, avion)){
-    int i, i1, i2, curr, med = (izq + der)/2;
+    int i1, i2, med = (izq + der)/2;
     if(izq == der) return;
 
     mergeSortaux(A, temp, izq, med, func);

@@ -68,7 +68,7 @@ void cercanos::printValues(){
 }
 
 cercanos cercaaux(avion *Arr,int izq, int der){
-    int i, i1, i2, curr, med = (izq + der)/2;
+    int med = (izq + der)/2;
 
     if(der - izq == 1) {
         cercanos sol = cercanos();
