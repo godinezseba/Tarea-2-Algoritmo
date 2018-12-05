@@ -64,3 +64,9 @@ float compareY(avion A, avion B){
     return A.getY()- B.getY();
 }
 
+bool antesQueX(avion A, avion B){
+    return A.getX() >= B.getX();
+}
+bool antesQueY(avion A, avion B){
+    return A.getY() >= B.getY();
+}
