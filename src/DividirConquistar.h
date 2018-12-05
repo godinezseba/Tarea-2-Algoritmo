@@ -38,7 +38,21 @@ float cercanos::getDistancia(){
 }
 
 void cercanos::printValues(){
-    cout << A.getX() << " " << A.getY() << "\n" << B.getX() << " " << B.getY() << endl;
+    
+    if (A.getX() < B.getX()) {
+        cout << A.getX() << " " << A.getY() << "\n" << B.getX() << " " << B.getY() << endl;
+    }
+    else if (A.getX() > B.getX()) {
+        cout << B.getX() << " " << B.getY() << "\n" << A.getX() << " " << A.getY() << endl;
+    }
+    else{
+        if (A.getY() < B.getY()) {
+            cout << A.getX() << " " << A.getY() << "\n" << B.getX() << " " << B.getY() << endl;
+        }
+        else{
+            cout << B.getX() << " " << B.getY() << "\n" << A.getX() << " " << A.getY() << endl;
+        }
+    }
 }
 
 void cercanos::printDebug(){
