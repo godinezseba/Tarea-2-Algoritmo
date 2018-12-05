@@ -3,12 +3,12 @@
 // Second subarray is arr[m+1..r] 
 #include "Avion.h"
 
-void mergeSortaux(avion *A, avion *temp, int izq, int der){
+void mergeSortauxX(avion *A, avion *temp, int izq, int der){
     int i, i1, i2, curr, med = (izq + der)/2;
     if(izq == der) return;
 
-    mergeSortaux(A, temp, izq, med);
-    mergeSortaux(A, temp, med+1, der);
+    mergeSortauxX(A, temp, izq, med);
+    mergeSortauxX(A, temp, med+1, der);
 
     for(int i = izq; i <= der; i++) temp[i] = A[i];
 
@@ -23,8 +23,34 @@ void mergeSortaux(avion *A, avion *temp, int izq, int der){
     }
 }
 
-void mergeSort(avion *A, int n){
+void mergeSortX(avion *A, int n){
     avion *temp = new avion[n];
-    mergeSortaux(A, temp, 0, n);
+    mergeSortauxX(A, temp, 0, n);
+    delete temp;
+}
+
+void mergeSortauxY(avion *A, avion *temp, int izq, int der){
+    int i, i1, i2, curr, med = (izq + der)/2;
+    if(izq == der) return;
+
+    mergeSortauxY(A, temp, izq, med);
+    mergeSortauxY(A, temp, med+1, der);
+
+    for(int i = izq; i <= der; i++) temp[i] = A[i];
+
+    i1 = izq; i2 = med + 1;
+
+    
+    for(int i = izq; i <= der; i++){
+        if(i1 == med + 1) A[i] = temp[i2++];
+        else if(i2 > der) A[i] = temp[i1++];
+        else if (temp[i1].getY() >= temp[i2].getY() ) A[i] = temp[i1++];
+        else A[i] = temp[i2++];
+    }
+}
+
+void mergeSortY(avion *A, int n){
+    avion *temp = new avion[n];
+    mergeSortauxY(A, temp, 0, n);
     delete temp;
 }
