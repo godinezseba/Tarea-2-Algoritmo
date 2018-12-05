@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <iostream>
+#include <iomanip>
 #include "DividirConquistar.h"
 
 using namespace std;
@@ -13,6 +14,7 @@ int main(int argc, char const *argv[]){
     float j; 
     avion *A;
     cercanos resp;
+    cout << fixed << setprecision(1);
 	while(cin >> s){
         A = new avion[s];
 
