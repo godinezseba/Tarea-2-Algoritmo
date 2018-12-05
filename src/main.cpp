@@ -13,6 +13,7 @@ int main(int argc, char const *argv[]){
     float i;
     float j; 
     avion *A;
+    
     cercanos resp;
     cout << fixed << setprecision(1);
 	while(cin >> s){
@@ -26,6 +27,8 @@ int main(int argc, char const *argv[]){
         resp = cerca(A,s);
         resp.printValues();
         cout << endl;
+
+
         delete[] A; 
 	}
 

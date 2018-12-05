@@ -94,6 +94,7 @@ cercanos cercaaux(avion *Arr,int izq, int der){
     int med = (izq + der)/2;
     
     if(der - izq == 1) {
+        
         cercanos sol = cercanos();
         sol.setValores(Arr[izq],Arr[der],distancia(Arr[izq],Arr[der]));
         return sol;
@@ -111,6 +112,14 @@ cercanos cercaaux(avion *Arr,int izq, int der){
 }
 
 cercanos cerca(avion *A, int n){
+    
+
+    if (n == 1){
+        cercanos resp = cercanos();
+        resp.setValores(A[0],A[0],0);
+        return resp;
+    }
+    //Los ordena con respecto a la coordenada x
     mergeSort(A, n, antesQueX);
     return cercaaux(A, 0, n-1);
 }
