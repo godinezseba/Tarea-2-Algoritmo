@@ -37,7 +37,6 @@ float cercanos::getDistancia(){
 }
 
 cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
-    cercanos respuesta;
     int sol_izquierdo, sol_derecho;
     avion *temp;
 
@@ -48,14 +47,21 @@ cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
         sol_derecho = i;
 
     temp = new avion[sol_derecho+1-sol_izquierdo];
-    
+
     for(int i = sol_izquierdo, j = 0; i <= sol_derecho; i++, j++){
         temp[j] = Arreglo[i];
     }
     mergeSort(temp, derecho+1-izq, antesQueY);
-    
 
-    return respuesta;
+    for(int i = 1; i <= derecho+1-izq; i++){
+        int j = i-1;
+        while(compareY(temp[j], temp[i]) < solucion.getDistancia()){
+            if(distancia(temp[i], temp[j]) < solucion.getDistancia()){
+                solucion.setValores(temp[i], temp[j], distancia(temp[i], temp[j]));
+            }
+        }
+    }
+    return solucion;
 }
 void cercanos::printValues(){
     cout << A.getX() << " " << A.getY() << endl << B.getX() << " " << B.getY() << endl; 
@@ -74,23 +80,10 @@ cercanos cercaaux(avion *Arr,int izq, int der){
     cercanos sol_der = cercaaux(Arr, med+1, der);
 
     if ( sol_izq.getDistancia() > sol_der.getDistancia()){
-        cercanos sol_med = cantidados(Arr,sol_der,izq,der);
-        if(sol_med.getDistancia() > sol_der.getDistancia()){
-            return sol_der;
-        }
-        else{
-            return sol_med;
-        }
+        return cantidados(Arr,sol_der,izq,der);
     }
     else {
-        cercanos sol_med = cantidados(Arr,sol_izq,izq,der);
-        if(sol_med.getDistancia() > sol_izq.getDistancia()){
-            return sol_izq;
-        }
-        else{
-            return sol_med;
-        }
-
+        return cantidados(Arr,sol_izq,izq,der);
     }
 }
 
