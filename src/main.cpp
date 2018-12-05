@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "MergeSort.h"
 #include <iostream>
+#include "DividirConquistar.h"
 
 using namespace std;
 

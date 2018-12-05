@@ -1,4 +1,3 @@
-#include "Avion.h"
 #include "MergeSort.h"
 #include <iostream>
 
@@ -39,14 +38,23 @@ float cercanos::getDistancia(){
 
 cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
     cercanos respuesta;
-    avion *temp = new avion[derecho+1-izq];
-    
-    for(int i = izq, j = 0; i <= derecho; i++, j++){
-        temp[i] = Arreglo[i];
-    }
+    int sol_izquierdo, sol_derecho;
+    avion *temp;
 
+    for(int i = derecho+1-izq; i >= izq && solucion.getDistancia() < compareX(Arreglo[derecho+1-izq], Arreglo[i]); i--)
+        sol_izquierdo = i;
+
+    for(int i = derecho+1-izq; i <= derecho && solucion.getDistancia() < compareX(Arreglo[derecho+1-izq], Arreglo[i]); i++)
+        sol_derecho = i;
+
+    temp = new avion[sol_derecho+1-sol_izquierdo];
+    
+    for(int i = sol_izquierdo, j = 0; i <= sol_derecho; i++, j++){
+        temp[j] = Arreglo[i];
+    }
     mergeSort(temp, derecho+1-izq, antesQueY);
     
+
     return respuesta;
 }
 void cercanos::printValues(){
