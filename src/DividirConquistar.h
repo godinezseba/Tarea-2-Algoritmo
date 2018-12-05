@@ -37,8 +37,16 @@ float cercanos::getDistancia(){
     return this->distancia;
 }
 
-cercanos cantidados(avion *Arreglo,cercanos solucion, int izq,int derecho){
+cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
     cercanos respuesta;
+    avion *temp = new avion[derecho+1-izq];
+    
+    for(int i = izq, j = 0; i <= derecho; i++, j++){
+        temp[i] = Arreglo[i];
+    }
+
+    mergeSortY(temp, derecho+1-izq);
+    
     return respuesta;
 }
 void cercanos::printValues(){
@@ -47,9 +55,6 @@ void cercanos::printValues(){
 
 cercanos cercaaux(avion *Arr,int izq, int der){
     int i, i1, i2, curr, med = (izq + der)/2;
-    cercanos *sol;
-    
-
 
     if(der - izq == 1) {
         cercanos sol = cercanos();

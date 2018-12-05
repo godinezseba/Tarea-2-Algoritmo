@@ -24,7 +24,7 @@ void mergeSortauxX(avion *A, avion *temp, int izq, int der){
 }
 
 void mergeSortX(avion *A, int n){
-    avion *temp = new avion[n];
+    avion *temp = new avion[n+1];
     mergeSortauxX(A, temp, 0, n);
     delete temp;
 }
@@ -50,7 +50,24 @@ void mergeSortauxY(avion *A, avion *temp, int izq, int der){
 }
 
 void mergeSortY(avion *A, int n){
-    avion *temp = new avion[n];
+    avion *temp = new avion[n+1];
     mergeSortauxY(A, temp, 0, n);
     delete temp;
+}
+
+main(int argc, char const *argv[])
+{
+    avion *A = new avion[10];
+    
+    for(int i = 0; i < 10; i++)
+    {
+        A[i] = avion((i*7+13)%4,i+1);
+    }
+    
+    printArreglo(A, 10);
+
+    mergeSortX(A, 9);
+    
+    printArreglo(A, 10);
+    return 0;
 }
