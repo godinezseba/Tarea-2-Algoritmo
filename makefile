@@ -1,7 +1,7 @@
 all:
 	g++ src/main.cpp -o main -Wall
 run:
-	./main < input/input_100_de_100.txt > output.txt
+	./main < input/input.txt > output.txt
 vald:
 	valgrind ./main < input/input.txt
 check:

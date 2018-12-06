@@ -65,6 +65,8 @@ cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
     int sol_izquierdo = izq, sol_derecho = derecho;
     avion *temp;
 
+    //si la distancia de la coordenada x a la del punto del medio del arreglo es menor a la minima
+    //clasifica como candidato
     for(int i = derecho+1-izq; i >= izq && solucion.getDistancia() < compareX(Arreglo[derecho+1-izq], Arreglo[i]); i--)
         sol_izquierdo = i;
 
@@ -76,8 +78,11 @@ cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
     for(int i = sol_izquierdo, j = 0; i <= sol_derecho; i++, j++){
         temp[j] = Arreglo[i];
     }
+
+    //ordena los cantidatos respecto a la coodenada y
     mergeSort(temp, sol_derecho+1-sol_izquierdo, antesQueY);
 
+    //calcula la distancia entre todos los cantidatos y se queda con el menor
     for(int i = 0; i <= sol_derecho+1-sol_izquierdo; i++){
         for(int j = i+1; j < sol_derecho+1-sol_izquierdo && compareY(temp[j], temp[i]) < solucion.getDistancia(); j++){
             if(distancia(temp[i], temp[j]) < solucion.getDistancia()){
@@ -93,6 +98,7 @@ cercanos cantidados(avion *Arreglo,cercanos solucion, int izq, int derecho){
 cercanos cercaaux(avion *Arr,int izq, int der){
     int med = (izq + der)/2;
     
+    //punto de termino
     if(der - izq == 1) {
         
         cercanos sol = cercanos();
@@ -100,9 +106,11 @@ cercanos cercaaux(avion *Arr,int izq, int der){
         return sol;
     }
     
+    // recursivamente obtiene la minima distancia entre ambas mitades
     cercanos sol_izq = cercaaux(Arr, izq, med);
     cercanos sol_der = cercaaux(Arr, med, der);
 
+    // busca cantidatos a minimo con un elemento en cada mitad
     if ( sol_izq.getDistancia() > sol_der.getDistancia()){
         return cantidados(Arr, sol_der, izq, der);
     }

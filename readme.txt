@@ -1,0 +1,3 @@
+- compilar con make
+- cambiar el nombre del archivo deseado en el makefile
+- ejecutar con make run
